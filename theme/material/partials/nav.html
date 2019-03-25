@@ -1,0 +1,52 @@
+<!-- Main navigation -->
+<html>
+<body>
+<!--<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>-->
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+
+<nav class="md-nav md-nav--primary" data-md-level="0">
+
+    <!-- Site title -->
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+        <a href="{{ config.site_url | default(nav.homepage.url, true) | url }}"
+           title="{{ config.site_name }}" class="md-nav__button md-logo">
+            {% if config.theme.logo.icon %}
+            <i class="md-icon">{{ config.theme.logo.icon }}</i>
+            {% else %}
+            <img src="{{ config.theme.logo | url }}" width="48" height="48" />
+            {% endif %}
+        </a>
+        {{ config.site_name }}
+        {% if config.extra.versions %}
+        <div class="md-nav__item">
+            <label for="Versions">Version:
+                <select class="custom-select" id="versions" onchange="window.location.href=this.value;">
+                    {% for version in config.extra.versions %}
+                    <option value=" /versions/IS/{{ version }}/ " {% if version.Selected %} selected="SELECTED" {% endif %}>{{ version }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+        {% endif %}
+    </label>
+    <!-- Repository containing source -->
+    {% if config.repo_url %}
+    <div class="md-nav__source">
+        {% include "partials/source.html" %}
+    </div>
+    {% endif %}
+
+    <!-- Render item list -->
+    <ul class="md-nav__list" data-md-scrollfix>
+        {% for nav_item in nav %}
+        {% set path = "nav-" + loop.index | string %}
+        {% set level = 1 %}
+        {% include "partials/nav-item.html" %}
+        {% endfor %}
+    </ul>
+</nav>
+
+</body>
+</html>

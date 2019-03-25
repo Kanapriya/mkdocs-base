@@ -1,0 +1,19 @@
+.custom-select {
+	position: inherit;
+	display: inline;
+	min-width: 25%;
+	/* width: 120%; */
+	height: 25px;
+	padding: 5px 15px 5px 5px;
+	color: Black;
+	border: none;
+	background: transparent;
+	outline: none;
+	-webkit-appearance: none;
+	z-index: 99;
+	cursor: pointer;
+	font-size: 12px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+	overflow: auto
+}
